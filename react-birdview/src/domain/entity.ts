@@ -8,3 +8,12 @@ export type ISquare = {
   value: IColor;
   onClick: () => void;
 }
+export type IGameProps = {
+  timeLeft: number,
+  inProgress: boolean,
+  score: number,
+  squares: Squares,
+  startGame?: () => void,
+  reset?: () => void,
+  tapSquare?: (color:IColor) => void,
+}

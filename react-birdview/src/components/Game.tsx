@@ -1,17 +1,15 @@
 import React, { FC } from "react";
-import { IColor } from "../domain/entity";
+import { IGameProps, IColor } from "../domain/entity";
 import Board from "./Board";
-import useTimer from '../hooks/use-timer'
-import useGame from '../hooks/use-game'
-
-const Game: FC<{ limit: number }> = ({ limit }) => {
-  const [inProgress, score, squares, handleClick, startGame, resetGame] = useGame(limit);
-  const [timeLeft, resetTimer] = useTimer(limit, inProgress);
-  const tapSquare = (color: IColor) => handleClick(color)
-  const reset = () => {
-    resetTimer()
-    resetGame()
-  }
+const Game: FC<IGameProps> = ({ 
+  timeLeft = 0,
+  inProgress = false,
+  score = 0,
+  squares = Array<IColor>(9).fill(''),
+  startGame = () => undefined,
+  reset = () => undefined,
+  tapSquare = () => undefined,
+ }) => {
   return (
     <div className="game">
       {inProgress && timeLeft > 0 &&
